@@ -10,7 +10,7 @@ module.exports = (QENV) => {
   if (!["DEV", "STAGE", "PROD"].includes(QENV)) {
     throw Error("Unknonw or not supplied environment variable");
   }
-  log('logorojectid_log', ENV[`${QENV}_PROJECTID`])
+  console.log('logorojectid_log', ENV[`${QENV}_PROJECTID`])
   return {
     FIREBASE_CONFIG: {
       apiKey: ENV[`${QENV}_APIKEY`],
