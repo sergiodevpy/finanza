@@ -7,12 +7,12 @@
 
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
-
-
-const { configure } = require('quasar/wrappers');
+const enviromentConfiguration = require('./src/utils/environmentConfig.js')
+const { configure } = require("quasar/wrappers");
 
 
 module.exports = configure(function (/* ctx */) {
+
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -20,7 +20,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['router-control'],
+    boot: ["router-control"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -45,7 +45,7 @@ module.exports = configure(function (/* ctx */) {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node20",
       },
-      transpile: ['chart.js'],
+      transpile: ["chart.js"],
       vueRouterMode: "hash", // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
@@ -55,7 +55,9 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        QENV: enviromentConfiguration(process.env.QENV)
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -96,7 +98,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Dialog','Loading','Notify'],
+      plugins: ["Dialog", "Loading", "Notify"],
     },
 
     // animations: 'all', // --- includes all animations
