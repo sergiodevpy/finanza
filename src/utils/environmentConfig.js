@@ -12,13 +12,21 @@ module.exports = (QENV) => {
   }
   console.log('logorojectid_log', ENV[`${QENV}_PROJECTID`])
   return {
-    FIREBASE_CONFIG: {
+    /*FIREBASE_CONFIG: {
       apiKey: ENV[`${QENV}_APIKEY`],
       authDomain: ENV[`${QENV}_AUTHDOMAIN`],
       projectId: ENV[`${QENV}_PROJECTID`],
       storageBucket: ENV[`${QENV}_STORAGEBUCKET`],
       messagingSenderId: ENV[`${QENV}_MESSAGINGSENDERID`],
       appId: ENV[`${QENV}_APPID`],
+    },*/
+    FIREBASE_CONFIG: {
+      apiKey: `process.env.${QENV}_APIKEY`,
+      authDomain: `process.env.${QENV}_AUTHDOMAIN`,
+      projectId: `process.env.${QENV}_PROJECTID`,
+      storageBucket: `process.env.${QENV}_STORAGEBUCKET`,
+      messagingSenderId: `process.env.${QENV}_MESSAGINGSENDERID`,
+      appId: `process.env.${QENV}_APPID`,
     },
   };
 };
