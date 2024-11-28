@@ -8,14 +8,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyC0ysKq_EwzBgyOtP62vsJCysxDomkeTZ0",
-//   authDomain: "finanzaiglesia---firestore.firebaseapp.com",
-//   projectId: "finanzaiglesia---firestore",
-//   storageBucket: "finanzaiglesia---firestore.firebasestorage.app",
-//   messagingSenderId: "800707072309",
-//   appId: "1:800707072309:web:94582024bc0509c6657c7c"
-// };
+
 
 const firebaseConfig = process.env.QENV.FIREBASE_CONFIG;
 
