@@ -27,12 +27,12 @@ module.exports = (QENV) => {
   if (QENV == "PROD") {
     return {
       FIREBASE_CONFIG: {
-        apiKey: `process.env.${QENV}_APIKEY`,
-        authDomain: `process.env.${QENV}_AUTHDOMAIN`,
-        projectId: `process.env.${QENV}_PROJECTID`,
-        storageBucket: `process.env.${QENV}_STORAGEBUCKET`,
-        messagingSenderId: `process.env.${QENV}_MESSAGINGSENDERID`,
-        appId: `process.env.${QENV}_APPID`,
+        apiKey: process.env.PROD_APIKEY,
+        authDomain: process.env.PROD_AUTHDOMAIN,
+        projectId: process.env.PROD_PROJECTID,
+        storageBucket: process.env.PROD_STORAGEBUCKET,
+        messagingSenderId: process.env.PROD_MESSAGINGSENDERID,
+        appId: process.env.PROD_APPID,
       },
     };
   }
