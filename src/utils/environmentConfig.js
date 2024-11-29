@@ -10,23 +10,30 @@ module.exports = (QENV) => {
   if (!["DEV", "STAGE", "PROD"].includes(QENV)) {
     throw Error("Unknonw or not supplied environment variable");
   }
-  console.log('logorojectid_log', ENV[`${QENV}_PROJECTID`])
-  return {
-    /*FIREBASE_CONFIG: {
-      apiKey: ENV[`${QENV}_APIKEY`],
-      authDomain: ENV[`${QENV}_AUTHDOMAIN`],
-      projectId: ENV[`${QENV}_PROJECTID`],
-      storageBucket: ENV[`${QENV}_STORAGEBUCKET`],
-      messagingSenderId: ENV[`${QENV}_MESSAGINGSENDERID`],
-      appId: ENV[`${QENV}_APPID`],
-    },*/
-    FIREBASE_CONFIG: {
-      apiKey: `process.env.${QENV}_APIKEY`,
-      authDomain: `process.env.${QENV}_AUTHDOMAIN`,
-      projectId: `process.env.${QENV}_PROJECTID`,
-      storageBucket: `process.env.${QENV}_STORAGEBUCKET`,
-      messagingSenderId: `process.env.${QENV}_MESSAGINGSENDERID`,
-      appId: `process.env.${QENV}_APPID`,
-    },
-  };
+  //entorno desarrollo toma del local
+  if (QENV == "DEV") {
+    return {
+      FIREBASE_CONFIG: {
+        apiKey: ENV[`${QENV}_APIKEY`],
+        authDomain: ENV[`${QENV}_AUTHDOMAIN`],
+        projectId: ENV[`${QENV}_PROJECTID`],
+        storageBucket: ENV[`${QENV}_STORAGEBUCKET`],
+        messagingSenderId: ENV[`${QENV}_MESSAGINGSENDERID`],
+        appId: ENV[`${QENV}_APPID`],
+      },
+    };
+  }
+  //entorno producción que tome del sitio
+  if (QENV == "PROD") {
+    return {
+      FIREBASE_CONFIG: {
+        apiKey: `process.env.${QENV}_APIKEY`,
+        authDomain: `process.env.${QENV}_AUTHDOMAIN`,
+        projectId: `process.env.${QENV}_PROJECTID`,
+        storageBucket: `process.env.${QENV}_STORAGEBUCKET`,
+        messagingSenderId: `process.env.${QENV}_MESSAGINGSENDERID`,
+        appId: `process.env.${QENV}_APPID`,
+      },
+    };
+  }
 };
