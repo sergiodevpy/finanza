@@ -2,7 +2,7 @@
     <q-card
       bordered
       square
-      
+      class=""
     >
         <div class="row justify-center q-gutter-md">
             <q-radio v-model="model" @update:model-value="updateModel" size="xl" val="ingreso" label="INGRESO"
