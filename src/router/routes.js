@@ -29,7 +29,7 @@ const routes = [
       },
       {
         path: "test",
-        component: () => import("pages/PageStoragePlay.vue"),
+        component: () => import("pages/PageApexChartTest.vue"),
       },
       {
         path: "subirfb",
