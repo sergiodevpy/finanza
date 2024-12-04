@@ -8,6 +8,13 @@
 import { reactive } from 'vue';
 import { useTextoMoneda } from '../use/useTextoMoneda';
 
+const props = defineProps({
+    Iglesia: String,
+    Anio: String,
+    Tipo: String,
+    valores: Array
+})
+
 
 const chartOptions = reactive({
     chart: {
@@ -15,7 +22,7 @@ const chartOptions = reactive({
         toolbar: { show: true },
     },
     dataLabels: {
-        enabled: true,
+        enabled: false,
         style: {
             fontSize: '9px',
             colors: ['#03545f'] // color del texto
@@ -27,10 +34,10 @@ const chartOptions = reactive({
 
     },
     xaxis: {
-        categories: ['Enero', 'Febrero', 'Marzo'],
+        categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
     },
     title: {
-        text: 'Ingresos - ICEC - 2024',
+        text: `${props.Tipo} - ${props.Iglesia} - ${props.Anio}`,//'Ingresos - ICEC - 2024',
         align: 'center',
         margin: 10,
         style: {
@@ -46,10 +53,10 @@ const chartOptions = reactive({
             },
             colors: {
                 ranges: [{
-                  from: 0,
-                  to: 20000000,
-                  color: '#03545f'
-              }],
+                    from: 0,
+                    to: 1000000000,
+                    color: props.Tipo!="Egresos" ? '#03545f': '#A52A2A'
+                }],
             }
         }
     },
@@ -61,6 +68,7 @@ const chartOptions = reactive({
         }
     },
     yaxis: {
+        show: false,
         labels: {
             /**
             * Allows users to apply a custom formatter function to yaxis labels.
@@ -78,7 +86,8 @@ const chartOptions = reactive({
 const series = reactive([
     {
         name: 'Ingresos',
-        data: [11500000, 12300000, 17500000],
+        //data: [11500000, 12300000, 17500000, 11500000, 12300000, 17500000, 11500000, 12300000, 17500000, 11500000, 12300000, 17500000],
+        data: props.valores,
     },
 
 

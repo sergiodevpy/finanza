@@ -16,6 +16,7 @@ const chartOptions = reactive({
             enabled: false
         }
     },
+  
     dataLabels: {
         enabled: false
     },

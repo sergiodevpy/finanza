@@ -8,14 +8,14 @@
         align="justify"
         class="bg-white text-secondary"
       >
-        <q-route-tab to="/inicio" name="home" icon="home" class="btnNav">
+        <q-route-tab to="/inicio" name="home" icon="cottage" class="btnNav">
           Inicio
         </q-route-tab>
         <!-- <q-route-tab to="/movimiento" name="movimiento" icon="post_add" class="btnNav">
           Movimiento
         </q-route-tab> -->
-        <q-route-tab to="/registros" name="misRegistros" icon="currency_exchange" class="btnNav">
-          Movimientos
+        <q-route-tab to="/registros" name="misRegistros" icon="ballot" class="btnNav">
+          Movs.
         </q-route-tab>
         
         <q-route-tab
