@@ -24,10 +24,13 @@
           icon="article"
           class="btnNav"
         >
-          Actas Ofrendas
+          Actas
         </q-route-tab>
-        <q-route-tab to="/balances" name="balances" icon="assessment" class="btnNav">
+        <q-route-tab to="/balances" name="balances" icon="description" class="btnNav">
           Balances
+        </q-route-tab>
+        <q-route-tab to="/graficos" name="graficos" icon="insert_chart" class="btnNav">
+          Gráficos
         </q-route-tab>
         
       </q-tabs>
@@ -38,7 +41,7 @@
 </script>
   <style>
 .btnNav {
-  width: calc(100% / 4);
+  width: calc(100% / 5);
   font-size: 9px;
 }
 </style>

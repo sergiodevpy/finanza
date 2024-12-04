@@ -18,11 +18,12 @@ const chartOptions = reactive({
         enabled: true,
         style: {
             fontSize: '9px',
-            colors: ['#fff'] // color del texto
+            colors: ['#03545f'] // color del texto
         },
         formatter: function (val, opts) {
             return useTextoMoneda(val, "N")
         },
+        offsetY: -20,
 
     },
     xaxis: {

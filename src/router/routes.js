@@ -25,7 +25,7 @@ const routes = [
       },
       {
         path: "graficos",
-        component: () => import("pages/pageGraficos2.vue"),
+        component: () => import("pages/pageGraficos.vue"),
       },
       {
         path: "test",

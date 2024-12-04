@@ -4,7 +4,7 @@
 
     <!-- <BarChart class="borde" /> -->
     <!-- <balanceItem/> -->
-    <div class="q-pt-md">
+    <div class="">
       <listaBalances />
     </div>
 
