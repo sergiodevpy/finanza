@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page class="q-pa-md q-mx-auto" style="max-width: 600px;">
     <filtroActa />
     <ListaActaOfrenda />
     <div style="min-height: 60px;">

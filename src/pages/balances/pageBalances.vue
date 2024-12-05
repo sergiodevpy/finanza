@@ -1,16 +1,17 @@
 <template>
   <q-page class="q-pa-md">
-    <filtroBalance />
+    <div style="max-width: 600px;" class="q-mx-auto">
+      <filtroBalance />
 
-    <!-- <BarChart class="borde" /> -->
-    <!-- <balanceItem/> -->
-    <div class="">
-      <listaBalances />
+      <!-- <BarChart class="borde" /> -->
+      <!-- <balanceItem/> -->
+      <div class="">
+        <listaBalances />
+      </div>
+
+
+
     </div>
-
-
-
-
   </q-page>
 </template>
 

@@ -1,15 +1,18 @@
 <template>
   <q-page class="q-pa-md">
-    <filtroGrafico />
-    <div v-for="balance in storeGraficos.resumenFinanciero" :key="balance.iglesia">
-      <div class="q-mb-md borde">
-        <GraficoBarra :Iglesia="balance.iglesia" :Anio="balance.anio" Tipo="Ingresos" :valores="balance.ingresos" />
+    <div style="max-width: 600px;" class="q-mx-auto">
+      <filtroGrafico />
+      <div v-for="balance in storeGraficos.resumenFinanciero" :key="balance.iglesia">
+        <div class="q-mb-md borde">
+          <GraficoBarra :Iglesia="balance.iglesia" :Anio="balance.anio" Tipo="Ingresos" :valores="balance.ingresos" />
+        </div>
       </div>
-    </div>
-    <div v-for="balance in storeGraficos.resumenFinanciero" :key="balance.iglesia">
-      <div class="q-mb-md borde">
-        <GraficoBarra :Iglesia="balance.iglesia" :Anio="balance.anio" Tipo="Egresos" :valores="balance.egresos" />
+      <div v-for="balance in storeGraficos.resumenFinanciero" :key="balance.iglesia">
+        <div class="q-mb-md borde">
+          <GraficoBarra :Iglesia="balance.iglesia" :Anio="balance.anio" Tipo="Egresos" :valores="balance.egresos" />
+        </div>
       </div>
+
     </div>
 
 
@@ -25,7 +28,6 @@ import filtroGrafico from 'src/components/filtro/filtroGrafico.vue';
 import { useStoreGraficos } from 'src/stores/storeGraficos';
 const storeGraficos = useStoreGraficos()
 </script>
-
 
 <style scoped>
 .borde {
