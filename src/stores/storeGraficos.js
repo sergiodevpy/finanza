@@ -16,14 +16,14 @@ export const useStoreGraficos = defineStore("graficos", () => {
   const listaGraficoIngreso = reactive([]);
 
   const storeMovimiento = useStoreMovimiento();
-  const asignaValores = computed(() => {
-    storeMovimiento.balanceAnioFiltro = graficoAnioFiltro.value;
-    storeMovimiento.balanceIglesiaFiltro = graficoIglesiaFiltro.value;
-    console.log(
-      "storeMovimiento.listaBalanceIglesiaAnioMes_log",
-      JSON.stringify(storeMovimiento.listaBalanceIglesiaAnioMes)
-    );
-  });
+  // const asignaValores = computed(() => {
+  //   storeMovimiento.balanceAnioFiltro = graficoAnioFiltro.value;
+  //   storeMovimiento.balanceIglesiaFiltro = graficoIglesiaFiltro.value;
+  //   console.log(
+  //     "storeMovimiento.listaBalanceIglesiaAnioMes_log",
+  //     JSON.stringify(storeMovimiento.listaBalanceIglesiaAnioMes)
+  //   );
+  // });
 
   const resumenFinanciero = computed(() => {
     // Arreglo de meses para completar
@@ -80,7 +80,7 @@ export const useStoreGraficos = defineStore("graficos", () => {
   return {
     graficoAnioFiltro,
     graficoIglesiaFiltro,
-    asignaValores,
+    // asignaValores,
     graficoIngreso,
     listaGraficoIngreso,
     resumenFinanciero,

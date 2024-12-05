@@ -3,10 +3,10 @@
     Ver por <span><q-icon name="search" /></span>
   </div>
   <div class="q-pb-md row ">
-    <iglesiaCmp class="col" v-model="storeGraficos.graficoIglesiaFiltro" />
+    <iglesiaCmp class="col" v-model="storeMovimiento.balanceIglesiaFiltro" />
 
     <q-input class="col" dense square outlined clearable type="tel" mask="####" label="Año"
-      v-model="storeGraficos.graficoAnioFiltro" />
+      v-model="storeMovimiento.balanceAnioFiltro" />
   </div>
 </template>
 
