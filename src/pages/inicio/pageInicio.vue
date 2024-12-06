@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md q-mx-auto" style="max-width: 600px;">
+  <q-page class="q-pa-md q-mx-auto" style="max-width: 800px;">
 
     <div class="q-pb-md">
       <div class="text-primary text-h4">

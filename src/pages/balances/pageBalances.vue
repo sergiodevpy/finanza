@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-md">
-    <div style="max-width: 600px;" class="q-mx-auto">
+    <div style="max-width: 800px;" class="q-mx-auto">
       <filtroBalance />
 
       <!-- <BarChart class="borde" /> -->
