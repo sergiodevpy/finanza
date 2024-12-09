@@ -29,7 +29,8 @@
     <!-- FOTO O DOCUMENTO -->
     <!-- <AgregarFotoDocumento/> -->
     <!-- <ObtenerFoto/> -->
-    <GaleriaMultimedia v-if="!storeMovimiento.movimientoObj.idActa":imagen="storeMovimiento.movimientoObj.imagenNombre" />
+    <GaleriaMultimedia v-if="!storeMovimiento.movimientoObj.idActa" :imagen="storeMovimiento.movimientoObj.imagenNombre"
+      ref="fotosRef" />
     <div style="min-height: 60px;"></div>
     <q-page-sticky v-if="storeMovimiento.listoParaGuardar" position="bottom-right" :offset="[18, 18]">
       <q-btn :disable="!storeMovimiento.listoParaGuardar" color="primary" icon="done" fab
@@ -39,7 +40,7 @@
     <q-page-sticky v-if="!storeMovimiento.listoParaGuardar && storeMovimiento.movimientoObj.id" position="bottom-right"
       :offset="[18, 18]">
       <q-btn :disable="storeMovimiento.listoParaGuardar" color="primary" icon-right="send" label="Whatsapp" no-caps
-        @click="enviaWhatsaap(storeMovimiento.whatsappTextoMovimiento)" />
+        @click="mensajeWhatsapp" />
 
     </q-page-sticky>
 
@@ -47,7 +48,7 @@
 </template>
 
 <script setup>
-import { onUnmounted, onMounted } from 'vue'
+import { onUnmounted, onMounted, ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { enviaWhatsaap } from "src/components/use/useEnviaWhatsaap";
 import fechaCmp from "src/components/compartido/fechaCmp.vue";
@@ -64,13 +65,21 @@ const storeMovimiento = useStoreMovimiento()
 
 const $q = useQuasar()
 
+const fotosRef = ref(null)
+
 const guardaOactualizaMovimiento = () => {
   if (storeMovimiento.movimientoObj.id) {
     storeMovimiento.actualizarMovimiento(storeMovimiento.movimientoObj.id, storeMovimiento.movimientoObj)
+    fotosRef.value.resetArchivo()
   } else {
     storeMovimiento.guardarMovimiento()
+    fotosRef.value.resetArchivo()
   }
 
+}
+
+const mensajeWhatsapp = () => {
+  storeMovimiento.enviaMensajeWhatsaap()
 }
 
 onMounted(() => {

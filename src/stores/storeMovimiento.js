@@ -97,7 +97,6 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
     if (storePerfilUsuarios.perfil.tipoUsuario == "NORMAL") {
       filtro = where("iglesia", "==", storePerfilUsuarios.perfil.iglesia);
     }
-    
 
     cargarMovimientosDesdeBD();
   };
@@ -228,8 +227,12 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
 
     if (imagenAguardar.nombre) {
       //al guardar inicia la subida de la img a la base de datos (storage)
-      storeMultimedia.subirImagen(imagenAguardar.imagen, imagenAguardar.nombre);
+      const urlImagenOK = await storeMultimedia.subirImagen(
+        imagenAguardar.imagen,
+        imagenAguardar.nombre
+      );
       console.log("url_log", movimientoObj.imagenURL);
+      console.log("url OK_log", urlImagenOK);
     }
 
     //armamos el nuevo mov con los datos finales (tomando tb la url img que asigna el proceso anterior)
@@ -241,12 +244,6 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
     await addDoc(movimientosColeccionRef, nuevoMovimiento);
 
     Loading.hide();
-    //mostrarMensaje("¡Guardado!", "se guardó correctamente el movimiento");
-    // mostrarMensajeConAccion(
-    //   "¡Guardado!",
-    //   "Cargar otro movimiento?",
-    //   "/registros"
-    // );
 
     mensajeMovimientoGuardado(
       "¡Guardado!",
@@ -290,7 +287,7 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
       boxClass: "bg-grey-2 text-primary",
     });
     for (const movimiento of listaMovimientos.value) {
-      if (movimiento.seleccionado && !movimiento.idActa ) {
+      if (movimiento.seleccionado && !movimiento.idActa) {
         //si tiene imagen lo borra
         if (movimiento.imagenNombre) {
           imageStore.deleteImage(movimiento.imagenNombre);
@@ -484,8 +481,8 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
   });
 
   const listaMovimientosUltimosRegistrados = computed(() => {
-    return listaMovimientos.value.slice(0,5)
-  })
+    return listaMovimientos.value.slice(0, 5);
+  });
 
   // Array de nombres de meses en español
   const nombresMeses = [
@@ -732,15 +729,39 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
     }
     const urlFoto = ref("");
     if (movimientoObj.imagenNombre) {
-      const imageStore = useImageStore();
-      urlFoto.value = imageStore.imageUrl;
+      obtenerUrl();
     }
     const texto = `Iglesia: *${movimientoObjUltimoGuardado.iglesia}* \nFecha: *${movimientoObjUltimoGuardado.fechaMovimiento}* \nTipo: *${movimientoObjUltimoGuardado.tipoMovimiento}* \nMonto: *${movimientoObjUltimoGuardado.monto} GS.*\nMotivo: *${movimientoObjUltimoGuardado.motivo}* \nDetalle: *${movimientoObjUltimoGuardado.detalleMovimiento}* \nFoto: *${urlFoto.value}* \n--Registrado en la APP--`;
     return texto;
   });
 
+  const urlFoto = ref("");
+  const enviaMensajeWhatsaap = async () => {
+    if (movimientoObj.id) {
+      Object.assign(movimientoObjUltimoGuardado, movimientoObj);
+    }
+
+    if (movimientoObj.idActa) {
+      Object.assign(movimientoObjUltimoGuardado, movimientoObjOriginal);
+    }
+
+    if (movimientoObj.imagenNombre) {
+      console.log("obteniendourl_log");
+      urlFoto.value = "ver en la app";
+      await obtenerUrl();
+    }
+    const texto = `Iglesia: *${movimientoObjUltimoGuardado.iglesia}* \nFecha: *${movimientoObjUltimoGuardado.fechaMovimiento}* \nTipo: *${movimientoObjUltimoGuardado.tipoMovimiento}* \nMonto: *${movimientoObjUltimoGuardado.monto} GS.*\nMotivo: *${movimientoObjUltimoGuardado.motivo}* \nDetalle: *${movimientoObjUltimoGuardado.detalleMovimiento}* \n--Registrado en la APP--`;
+    enviaWhatsaap(texto);
+  };
+  const obtenerUrl = async () => {
+    const imageStore = useImageStore();
+    await imageStore.getImageUrl(movimientoObj.imagenNombre);
+    urlFoto.value = imageStore.imageUrl;
+  };
+
   return {
     //estados
+    enviaMensajeWhatsaap,
     fechaMovimiento,
     iglesia,
     tipoMovimiento,

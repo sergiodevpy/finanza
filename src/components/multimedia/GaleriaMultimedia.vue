@@ -116,6 +116,18 @@ const eliminarArchivo = async () => {
 
 }
 
+const resetArchivo = () => {
+    console.log('reseteoDesdeMovimientos_log');
+    
+    archivoEliminado.value = true
+    selectedImage.value = null
+    storeMovimiento.movimientoObj.imagenURL = ""
+}
+
+defineExpose({
+    resetArchivo
+})
+
 const sinArchivo = computed(() => {
 
     return selectedImage.value ? false : true
