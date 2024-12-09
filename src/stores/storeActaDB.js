@@ -477,6 +477,42 @@ export const useStoreActaDB = defineStore("actasDB", () => {
     generaActaPDF(actaID);
   };
 
+  // Función auxiliar para parsear la fecha
+  const parsearFecha = (fechaStr) => {
+    const [dia, mes, anio] = fechaStr.split("/").map(Number);
+    return new Date(anio, mes - 1, dia);
+  };
+
+  // Computed: fecha como objeto Date
+  const fechaDate = computed(() => parsearFecha(actObjPDF.fecha));
+
+  // Computed: día
+  const dia = computed(() =>
+    fechaDate.value.getDate().toString().padStart(2, "0")
+  );
+
+  // Computed: mes en letras
+  const mesEnLetras = computed(() => {
+    const meses = [
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre",
+    ];
+    return meses[fechaDate.value.getMonth()];
+  });
+
+  // Computed: año
+  const anio = computed(() => fechaDate.value.getFullYear());
+
   return {
     //estados
     filtroIglesia,
@@ -485,6 +521,9 @@ export const useStoreActaDB = defineStore("actasDB", () => {
     ActasCargado,
     menuActaOpciones,
     actaObjPage,
+    dia,
+    mesEnLetras,
+    anio,
 
     //acciones
     iniciar,

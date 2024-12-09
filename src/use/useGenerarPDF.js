@@ -102,13 +102,13 @@ export function generaActaPDF(actaID) {
       {
         text: [
           "A los ",
-          { text: `${storeIngresos.dia}`, fontSize: 15, bold: true },
+          { text: `${storeActaDB.dia}`, fontSize: 15, bold: true },
           " días del mes de ",
-          { text: `${storeIngresos.mesEnLetras}`, fontSize: 15, bold: true },
+          { text: `${storeActaDB.mesEnLetras}`, fontSize: 15, bold: true },
           " del año ",
-          { text: `${storeIngresos.anio}`, fontSize: 15, bold: true },
+          { text: `${storeActaDB.anio}`, fontSize: 15, bold: true },
           " procedemos al conteo de las ofrendas de la Iglesia Cristiana Evangélica del Centro, RUC 801125138-9. Sede/Anexo ",
-          { text: `${storeIngresos.iglesia}`, fontSize: 15, bold: true },
+          { text: `${acta.iglesia}`, fontSize: 15, bold: true },
           " correspondiente al evento Culto dominical según se detalla a Continuación:",
         ],
         alignment: "justify",
