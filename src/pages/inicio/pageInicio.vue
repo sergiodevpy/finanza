@@ -96,7 +96,7 @@ const preCarga = (tipo) => {
 <style scoped>
 .borde {
   border: 1px solid #8ec7cf;
-  border-radius: 5px;
+  border-radius: 0px;
   padding: 5px;
 }
 </style>

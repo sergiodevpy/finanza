@@ -6,6 +6,7 @@ import { enviaWhatsaap } from "src/components/use/useEnviaWhatsaap";
 import { useStoreUsuarios } from "./storeUsuarios";
 import { useStoreMultimedia } from "./storeMultimedia";
 import { useImageStore } from "./imageStore";
+import { useStorePerfilUsuarios } from "./storePerfilUsuario";
 import {
   collection,
   addDoc,
@@ -85,13 +86,18 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
   const iniciar = () => {
     movimientosCargado.value = false;
     const storeUsuarios = useStoreUsuarios();
+    const storePerfilUsuarios = useStorePerfilUsuarios();
     movimientosColeccionRef = collection(
       db,
       "movimientos",
       "base",
       "movimientosColeccion"
     );
-    filtro = where("idUsuario", "==", storeUsuarios.usuarioDetalle.id);
+    // filtro = where("idUsuario", "==", storeUsuarios.usuarioDetalle.id);
+    if (storePerfilUsuarios.perfil.tipoUsuario == "NORMAL") {
+      filtro = where("iglesia", "==", storePerfilUsuarios.perfil.iglesia);
+    }
+    
 
     cargarMovimientosDesdeBD();
   };
@@ -284,7 +290,7 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
       boxClass: "bg-grey-2 text-primary",
     });
     for (const movimiento of listaMovimientos.value) {
-      if (movimiento.seleccionado && movimiento.idActa == "") {
+      if (movimiento.seleccionado && !movimiento.idActa ) {
         //si tiene imagen lo borra
         if (movimiento.imagenNombre) {
           imageStore.deleteImage(movimiento.imagenNombre);

@@ -1,6 +1,6 @@
 <template>
-    <q-btn style="min-width: 125px" @click="clickBoton" color="teal-1" size="15px" :text-color="props.color" no-caps
-        stack :to="props.accion">
+    <q-btn style="min-width: 125px" @click="clickBoton" color="teal-10" size="15px" :text-color="props.color" no-caps
+        stack :to="props.accion" outline square>
         <q-icon size="3em" :name="props.icono" />
         <div>
             {{ props.texto }}
