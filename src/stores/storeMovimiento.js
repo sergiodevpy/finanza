@@ -731,7 +731,7 @@ export const useStoreMovimiento = defineStore("movimiento", () => {
     if (movimientoObj.imagenNombre) {
       obtenerUrl();
     }
-    const texto = `Iglesia: *${movimientoObjUltimoGuardado.iglesia}* \nFecha: *${movimientoObjUltimoGuardado.fechaMovimiento}* \nTipo: *${movimientoObjUltimoGuardado.tipoMovimiento}* \nMonto: *${movimientoObjUltimoGuardado.monto} GS.*\nMotivo: *${movimientoObjUltimoGuardado.motivo}* \nDetalle: *${movimientoObjUltimoGuardado.detalleMovimiento}* \nFoto: *${urlFoto.value}* \n--Registrado en la APP--`;
+    const texto = `Iglesia: *${movimientoObjUltimoGuardado.iglesia}* \nFecha: *${movimientoObjUltimoGuardado.fechaMovimiento}* \nTipo: *${movimientoObjUltimoGuardado.tipoMovimiento}* \nMonto: *${movimientoObjUltimoGuardado.monto} GS.*\nMotivo: *${movimientoObjUltimoGuardado.motivo}* \nDetalle: *${movimientoObjUltimoGuardado.detalleMovimiento}* \n--Registrado en la APP--`;
     return texto;
   });
 
