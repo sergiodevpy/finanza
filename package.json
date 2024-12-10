@@ -1,7 +1,7 @@
 {
   "name": "finanza",
   "version": "0.0.1",
-  "description": "app para generar acta de ingresos",
+  "description": "Control financiero de iglesias",
   "productName": "finanza",
   "author": "Sergio <sergio.servin.arce@gmail.com>",
   "private": true,
