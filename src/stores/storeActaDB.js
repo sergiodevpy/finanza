@@ -4,6 +4,7 @@ import { ref, computed, reactive } from "vue";
 import { Dialog, IconSet, Loading, Notify } from "quasar";
 import { enviaWhatsaap } from "src/components/use/useEnviaWhatsaap";
 import { useStoreUsuarios } from "./storeUsuarios";
+import { useStorePerfilUsuarios } from "./storePerfilUsuario";
 import { usePageStoreActaOfrenda } from "./storePageActaOfrenda";
 import { useStoreMovimiento } from "./storeMovimiento";
 import { useTextoMoneda } from "src/components/use/useTextoMoneda";
@@ -39,13 +40,17 @@ export const useStoreActaDB = defineStore("actasDB", () => {
   const iniciar = () => {
     ActasCargado.value = false;
     const storeUsuarios = useStoreUsuarios();
+    const storePerfilUsuarios = useStorePerfilUsuarios();
     actasColeccionRef = collection(
       db,
       "actasOfrenda",
       "base",
       "actaOfrendaColeccion"
     );
-    filtro = where("idUsuario", "==", storeUsuarios.usuarioDetalle.id);
+    //filtro = where("idUsuario", "==", storeUsuarios.usuarioDetalle.id);
+    if (storePerfilUsuarios.perfil.tipoUsuario == "NORMAL") {
+      filtro = where("iglesia", "==", storePerfilUsuarios.perfil.iglesia);
+    }
 
     cargarActasdesdeDB();
   };
