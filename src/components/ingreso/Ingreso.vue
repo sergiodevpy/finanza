@@ -4,10 +4,17 @@
             {{ useTextoMoneda(props.valor, "N") }}
         </div>
         <div class="col-2">
-            <q-input v-model.number="cantidad" type="tel" dense outlined square @update:model-value="actualizaIngreso"
-                style="max-width: 100px" />
+            <q-input v-model.number="cantidad" @update:model-value="actualizaIngreso" style="max-width: 100px"
+                type="tel" dense outlined square />
+
         </div>
-        <div class="col-7 text-weight-medium text-primary text-h6 text-right q-pr-md">
+        <div class="col-1 q-pl-sm text-red text-h6" v-if="!valorIngresado">
+            *
+        </div>
+        <div class="col-6 text-weight-medium text-primary text-h6 text-right q-pr-md" v-if="!valorIngresado">
+            {{ useTextoMoneda(totalValor, "S") }}
+        </div>
+        <div class="col-7 text-weight-medium text-primary text-h6 text-right q-pr-md" v-else>
             {{ useTextoMoneda(totalValor, "S") }}
         </div>
     </div>
@@ -31,6 +38,12 @@ const props = defineProps({
 });
 
 const cantidad = ref();
+
+const valorIngresado = computed(() => {
+    console.log('cantidad_log', cantidad.value);
+
+    return cantidad.value >= 0 && !!cantidad.value
+})
 
 onMounted(() => {
     //si es una visualización del acta se obtiene los datos del objeto acta
