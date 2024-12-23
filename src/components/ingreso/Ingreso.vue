@@ -8,10 +8,10 @@
                 type="tel" dense outlined square />
 
         </div>
-        <div class="col-1 q-pl-sm text-red text-h6" v-if="!valorIngresado">
+        <div class="col-1 q-pl-sm text-red text-h6" v-if="valorIngresado">
             *
         </div>
-        <div class="col-6 text-weight-medium text-primary text-h6 text-right q-pr-md" v-if="!valorIngresado">
+        <div class="col-6 text-weight-medium text-primary text-h6 text-right q-pr-md" v-if="valorIngresado">
             {{ useTextoMoneda(totalValor, "S") }}
         </div>
         <div class="col-7 text-weight-medium text-primary text-h6 text-right q-pr-md" v-else>
@@ -42,7 +42,9 @@ const cantidad = ref();
 const valorIngresado = computed(() => {
     console.log('cantidad_log', cantidad.value);
 
-    return cantidad.value >= 0 && !!cantidad.value
+    // return cantidad.value >= 0 && !!cantidad.value
+    // return !!cantidad.value
+    return cantidad.value === '' || cantidad.value === null  || cantidad.value === undefined
 })
 
 onMounted(() => {
